@@ -7,5 +7,10 @@ namespace WasteRecycling
         {
             this.Squeezed = squeezed;
         }
+
+        public void Squeeze()
+        {
+            this.Squeezed = true;
+        }
     }
 }
