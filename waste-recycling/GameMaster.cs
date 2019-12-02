@@ -1,9 +1,16 @@
 public class GameMaster
 {
     public string CharacterName { get; set; }
-
-    public GameMaster(string characterName)
+    private static GameMaster _instance = null;
+    public static GameMaster Instance
     {
-        this.CharacterName = characterName;
+        get
+        {
+            if (_instance == null)
+                _instance = new GameMaster();
+            return _instance;
+        }
     }
+
+    private GameMaster() {}
 }
