@@ -44,9 +44,57 @@ namespace WasteRecycling
 
         public void ThrowOutGarbage(Garbage garbage)
         {
+            if (garbage is PlasticGarbage)
+            {
+                PlasticGarbage plasticGarbage = (PlasticGarbage)garbage;
+                if (plasticGarbage.Cleaned)
+                {
+                    int newLength = PlasticContent.Length + 1;
+                    PlasticContent = new PlasticGarbage[newLength];
+                    PlasticContent[newLength-1] = plasticGarbage;
+                    Console.WriteLine("plastic +1!");
+                }
+                else
+                {
+                    throw new DustbinContentException();
+                }
+            }
+            else
+            {
+                if (garbage is PaperGarbage)
+                {
+                    PaperGarbage paperGarbage = (PaperGarbage)garbage;
+                    if (paperGarbage.Squeezed)
+                    {
+                        int newLength = PaperContent.Length + 1;
+                        PaperContent = new PaperGarbage[newLength];
+                        PaperContent[newLength-1] = paperGarbage;
+                        Console.WriteLine("paper +1!");
+                    }
+                    else
+                    {
+                        throw new DustbinContentException();
+                    }
+                }
+                else
+                {
+                    if (garbage is Garbage)
+                    {
+                        int newLength = HouseWasteContent.Length + 1;
+                        HouseWasteContent = new Garbage[newLength];
+                        HouseWasteContent[newLength-1] = garbage;
+                        Console.WriteLine("house +1!");
+                    }
+                    else
+                    {
+                        throw new DustbinContentException();
+                    }
+                }
+            }
 
+            
         }
-        
+
         public void EmptyContents()
         {
             PaperContent = new PaperGarbage[0];
